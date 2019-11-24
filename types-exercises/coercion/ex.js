@@ -1,6 +1,27 @@
 // TODO: write the validation functions
 
+function isValidName(name) {
+  return typeof name === 'string' && name.trim().length >= 3;
+}
 
+function hoursAttended(attended, length) {
+  if (isStringOrNumber(attended) || isStringOrNumber(length)) {
+    attended = Number(attended);
+    length = Number(length);
+    return (
+      attended > 0 && length > 0
+    ) && (
+      Math.round(attended) === attended && Math.round(length) === length
+    ) && (
+      attended <= length
+    );
+  }
+  return false;
+
+  function isStringOrNumber(v) {
+    return typeof v === 'string' || typeof v === 'number';
+  }
+}
 
 // tests:
 console.log(isValidName("Frank") === true);
