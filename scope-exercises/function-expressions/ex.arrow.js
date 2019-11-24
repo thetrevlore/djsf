@@ -1,29 +1,23 @@
 function printRecords(recordIds) {
-	let students = recordIds.map(function getStudent(id) {
-    return studentRecords.find(function getStudentById(student) {
-      return student.id == id;
-    });
-  }).sort(function sortByName(studentA, studentB) {
-    return studentA.name > studentB.name;
-  });
+  let students = recordIds.map(findStudent = (id) => {
+    return studentRecords.find(findStudentById = (student) => student.id == id);
+  }).sort(sortByName = (studentA, studentB) => studentA.name > studentB.name);
 
-  students.forEach(function printRecord(student) {
+  students.forEach(printStudent = (student) => {
     console.log(`${student.name} (${student.id}): ${student.paid ? 'Paid' : 'Not Paid'}`)
   });
 }
 
 function paidStudentsToEnroll() {
-	return studentRecords.filter(function paidNotEnrolled(student) {
+	return studentRecords.filter(notEnrolled = (student) => {
     return !currentEnrollment.includes(student.id) && student.paid == true
-  }).map(function(student) { return student.id }).concat(currentEnrollment);
+  }).map(getStudentId = (student) => { return student.id }).concat(currentEnrollment);
 }
 
 function remindUnpaid(recordIds) {
-  printRecords(studentRecords.filter(function enrolledUnpaid(record) {
+  printRecords(studentRecords.filter(unpaid = (record) => {
     return recordIds.includes(record.id) && record.paid == false;
-  }).map(function getRecordId(record) {
-    return record.id;
-  }));
+  }).map(getId = (record) => record.id));
 }
 
 
